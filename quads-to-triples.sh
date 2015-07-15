@@ -10,8 +10,8 @@ usage="
 
 filename="${1%.*}"
 extension="${1##*.}"
-regex="(.*[^ ])[ ]+<[^ ]+>.*"
-sizes="--block-size 10M -L 100000"
+regex="\s*(\S+)\s+(<\S+>)\s+((\S+)|(".*"\S*))\s+(<\S+>).*"
+sizes="--block-size 10M"
 
 if [ $# = 1 ]
 then
@@ -19,7 +19,7 @@ then
         then
                 if [ $extension = "nq" ] || [ $extension = "nquads" ]
                 then
-                        cat $1 | parallel --pipe $sizes sed -rn "'s/"$regex"/\1 ./p'" > $filename.nt
+                        cat $1 | parallel --pipe $sizes sed -rn "'s/"$regex"/\1 \2 \3 ./p'" > $filename.nt
                 else
                         echo "$usage"
                         echo "  Error: input file extension should be '.nq' or '.nquads'"
