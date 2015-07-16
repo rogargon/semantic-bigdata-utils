@@ -10,7 +10,7 @@ usage="
 
 filename="${1%.*}"
 extension="${1##*.}"
-regex="\s*(\S+)\s+(<\S+>)\s+((\S+)|(".*"\S*))\s+(<\S+>).*"
+regex="\s*(\S+)\s+(<\S+>)\s+((<\S+>)|(_:\S+)|(\"[^\"]*\"\S*))\s+(<\S+>).*"
 sizes="--block-size 10M"
 
 if [ $# = 1 ]
