@@ -11,7 +11,7 @@ usage="
 filename="${1%.*}"
 extension="${1##*.}"
 regex="(.*[^ ])[ ]+<[^ ]+>.*"
-size="--block-size 10M"
+size="--block-size 100M"
 
 if [ $# = 1 ]
 then
